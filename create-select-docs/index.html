@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>create-select Documentation</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>create-select 🔗</h1>
+      <p>
+        A lightweight, framework-agnostic library for searchable, multi-select,
+        and async select components.
+      </p>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#api">API Reference</a></li>
+        <li><a href="#contributing">Contributing</a></li>
+        <li><a href="#license">License</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section id="features">
+        <h2>Features ✨</h2>
+        <ul>
+          <li>
+            Framework-agnostic: Works with React, Vue, Vanilla JavaScript, and
+            more.
+          </li>
+          <li>Searchable: Easily filter options based on search input.</li>
+          <li>Multi-select: Supports single and multiple selections.</li>
+          <li>
+            Async select: Dynamically load options based on user search input.
+          </li>
+          <li>
+            UI flexibility: The UI is fully customizable; you control how the
+            options and selected items are displayed.
+          </li>
+        </ul>
+      </section>
+
+      <section id="installation">
+        <h2>Installation ⚙️</h2>
+        <p>You can install the library using npm:</p>
+        <pre><code>npm install create-select</code></pre>
+        <p>Or using yarn:</p>
+        <pre><code>yarn add create-select</code></pre>
+      </section>
+
+      <section id="usage">
+        <h2>Usage 🛠️</h2>
+        <h3>1. Vanilla JavaScript Example</h3>
+        <pre><code>
+                &lt;!DOCTYPE html&gt;
+                &lt;html&gt;
+                &lt;head&gt;
+                    &lt;title&gt;Simple Create Select&lt;/title&gt;
+                &lt;/head&gt;
+                &lt;body&gt;
+                    &lt;input type="text" id="searchInput" placeholder="Search..."&gt;
+                    &lt;ul id="optionsList"&gt;&lt;/ul&gt;
+                    &lt;div id="selectedItems"&gt;&lt;/div&gt;
+
+                    &lt;script type="module"&gt;
+                        import { createSelect } from './node_modules/create-select/index.js';
+
+                        const select = createSelect({
+                            options: [
+                                { value: 1, label: 'Option 1' },
+                                { value: 2, label: 'Option 2' },
+                                { value: 3, label: 'Option 3' }
+                            ],
+                            isMulti: true
+                        });
+                        // JavaScript code for handling search and selection...
+                    &lt;/script&gt;
+                &lt;/body&gt;
+                &lt;/html&gt;
+            </code></pre>
+        <h3>2. React Example</h3>
+        <pre><code>
+                import React, {{ useState, useEffect }} from 'react';
+                import {{ createSelect }} from 'create-select';
+
+                function ReactSelect({ options, isMulti }) {{
+                    const [searchTerm, setSearchTerm] = useState('');
+                    const select = createSelect({ options, isMulti });
+                    // React component code...
+                }}
+            </code></pre>
+        <h3>3. Vue Example</h3>
+        <pre><code>
+                &lt;template&gt;
+                    &lt;div&gt;
+                        &lt;input v-model="searchTerm" @input="onSearch" placeholder="Search..." /&gt;
+                        &lt;ul&gt;
+                            &lt;li v-for="option in select.options" :key="option.value"&gt;
+                                {{ option.label }}
+                            &lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/div&gt;
+                &lt;/template&gt;
+                &lt;script&gt;
+                export default {{
+                    data() {{
+                        return {{
+                            searchTerm: '',
+                            select: createSelect({ options: [], isMulti: true })
+                        }};
+                    }},
+                }};&lt;/script&gt;
+            </code></pre>
+      </section>
+
+      <section id="api">
+        <h2>API Reference 📚</h2>
+        <h3>createSelect()</h3>
+        <p>
+          The <code>createSelect()</code> function is the core of the library
+          and handles the logic for filtering, selecting, and managing options.
+        </p>
+        <h4>Parameters:</h4>
+        <ul>
+          <li>
+            <code>options</code> (Array): The list of options to choose from.
+          </li>
+          <li>
+            <code>asyncLoadOptions</code> (Function, optional): A function to
+            load options asynchronously.
+          </li>
+          <li>
+            <code>isMulti</code> (Boolean, optional): Whether multiple options
+            can be selected.
+          </li>
+        </ul>
+        <h4>Returns:</h4>
+        <ul>
+          <li>
+            <code>options</code>: The list of options filtered by the search
+            term.
+          </li>
+          <li>
+            <code>selected</code>: The list of currently selected options.
+          </li>
+          <li>
+            <code>search(term: string)</code>: A function to set the search term
+            and filter options.
+          </li>
+          <li>
+            <code>select(option: object)</code>: A function to select or
+            deselect an option.
+          </li>
+        </ul>
+      </section>
+
+      <section id="contributing">
+        <h2>Contributing 💻</h2>
+        <p>
+          We welcome contributions! If you find an issue or have an idea for
+          improvement, feel free to open an issue or submit a pull request.
+        </p>
+        <h4>Steps to contribute:</h4>
+        <ol>
+          <li>Fork the repository.</li>
+          <li>Clone your forked repository.</li>
+          <li>Create a new branch for your feature.</li>
+          <li>Commit your changes.</li>
+          <li>Push your changes to the new branch.</li>
+          <li>Submit a pull request.</li>
+        </ol>
+      </section>
+
+      <section id="license">
+        <h2>License 📄</h2>
+        <p>
+          This project is licensed under the <strong>MIT License</strong>. See
+          the <a href="LICENSE">LICENSE</a> file for more details.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 create-select</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

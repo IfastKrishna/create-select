@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Hook Select</title>
+  </head>
+  <body>
+    <input type="text" id="searchInput" placeholder="Search..." />
+    <ul id="optionsList"></ul>
+    <div id="selectedItems"></div>
+
+    <script type="module">
+      import { createSelect } from "../createSelect.js";
+      createSelect({});
+      const select = createSelect({
+        options: [
+          { value: 1, label: "Option 1" },
+          { value: 2, label: "Option 2" },
+          { value: 3, label: "Option 3" },
+          { value: 3, label: "Option 5" },
+          { value: 3, label: "Option 6" },
+          { value: 3, label: "Option 7" },
+          { value: 3, label: "Option 8" },
+        ],
+        isMulti: true,
+      });
+
+      console.log(select);
+
+      const searchInput = document.getElementById("searchInput");
+      const optionsList = document.getElementById("optionsList");
+      const selectedItems = document.getElementById("selectedItems");
+
+      searchInput.addEventListener("input", (e) => {
+        select.search(e.target.value);
+        renderOptions();
+      });
+
+      function renderOptions() {
+        optionsList.innerHTML = "";
+        select.options.forEach((option) => {
+          const li = document.createElement("li");
+          li.innerText = option.label;
+          li.addEventListener("click", () => {
+            select.select(option);
+            renderSelectedItems();
+          });
+          optionsList.appendChild(li);
+        });
+      }
+
+      function renderSelectedItems() {
+        selectedItems.innerHTML = "";
+        select.selected.forEach((option) => {
+          const div = document.createElement("div");
+          div.innerText = option.label;
+          selectedItems.appendChild(div);
+        });
+      }
+
+      renderOptions(); // Initial render
+    </script>
+  </body>
+</html>
